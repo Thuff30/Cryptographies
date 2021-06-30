@@ -26,9 +26,24 @@ namespace Cryptographies
                 sb.Append(temparray[Array.IndexOf(reference, Char.ToLower(code[i]))]);
             }
 
+            return sb.ToString().ToUpper();
+        }
 
-            string output = "";
-            return output;
+        public static string Decode(string userin, string key, int shiftNum)
+        {
+            StringBuilder sb = new StringBuilder();
+            char[] input = ConvertToArray(userin);
+            List<char[]> tabulaRecta = new List<char[]>();
+            tabulaRecta = GenerateCodeTable(shiftNum);
+            char[] code = CodeString(input.Length, key);
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char[] temparray = tabulaRecta[Array.IndexOf(reference, Char.ToLower(code[i]))];
+                sb.Append(reference[Array.IndexOf(temparray, Char.ToLower(input[i]))]);
+            }
+
+            return sb.ToString().ToUpper();
         }
 
         static char[] ConvertToArray(string userin)

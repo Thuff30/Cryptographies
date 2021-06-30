@@ -31,9 +31,8 @@ namespace Cryptographies
                     sb.Append(letter);
                 }
             }
-            string output = sb.ToString();
 
-            return output;
+            return sb.ToString();
         }
         public static string Decode(string userin, int shiftNum)
         {
@@ -56,8 +55,7 @@ namespace Cryptographies
                 }
             }
 
-            string output = sb.ToString();
-            return output;
+            return sb.ToString();
         }
 
         static char[] ConvertToArray(string userin)
