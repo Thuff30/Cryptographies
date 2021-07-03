@@ -7,14 +7,16 @@ namespace Cryptographies
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Would you like to use a Vigenere's Cipher or Caeser Shift Cipher?");
+            Console.WriteLine("Would you like to use a Vigenere's Cipher or Caesar Shift Cipher?");
             string cipher = Console.ReadLine().ToLower();
             Console.WriteLine("Would you like to encode or decode an message?");
             string choice = Console.ReadLine().ToLower();
             string output = "";
             string key = "";
-            List<string> caeserVariants = new List<string> { "caeser shift cipher", "caeser shift", "caeser" };
+            List<string> caesarVariants = new List<string> { "caesar shift cipher", "caesar shift", "caesar" };
             List<string> vigenereVariants = new List<string> { "vigenere's", "vigenere's cipher", "vigeneres", "vigeneres cipher" };
+            Dictionary<char, char> plugBoard = new Dictionary<char, char>();
+            char[] reference = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             if (choice == "encode")
             {
                 Console.WriteLine("Please enter a message to encode:");
@@ -33,7 +35,7 @@ namespace Cryptographies
             }
             if(choice == "encode")
             {
-                if (caeserVariants.Contains(cipher))
+                if (caesarVariants.Contains(cipher))
                 {
                     output = CaeserShift.Encode(userin, shift);
                 }
@@ -44,7 +46,7 @@ namespace Cryptographies
             }
             else
             {
-                if (caeserVariants.Contains(cipher))
+                if (caesarVariants.Contains(cipher))
                 {
                     output = CaeserShift.Decode(userin, shift);
                 }

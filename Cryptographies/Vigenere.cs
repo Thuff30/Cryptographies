@@ -13,7 +13,7 @@ namespace Cryptographies
         public static string Encode(string userin, string key, int shiftNum)
         {
             StringBuilder sb = new StringBuilder();
-            char[] input = ConvertToArray(userin);
+            char[] input = SharedFunctions.ConvertToArray(userin);
             List<char[]> tabulaRecta = new List<char[]>();
             tabulaRecta = GenerateCodeTable(shiftNum);
             char[] code = CodeString(input.Length, key);
@@ -21,9 +21,9 @@ namespace Cryptographies
             for(int i = 0; i < input.Length; i++)
             {
                 //Get X Axis
-                char[] temparray = tabulaRecta[Array.IndexOf(reference, Char.ToLower(input[i]))];
+                char[] temparray = tabulaRecta[Array.IndexOf(reference, Char.ToUpper(input[i]))];
                 //Get and append Y Axis
-                sb.Append(temparray[Array.IndexOf(reference, Char.ToLower(code[i]))]);
+                sb.Append(temparray[Array.IndexOf(reference, Char.ToUpper(code[i]))]);
             }
 
             return sb.ToString().ToUpper();
@@ -32,43 +32,23 @@ namespace Cryptographies
         public static string Decode(string userin, string key, int shiftNum)
         {
             StringBuilder sb = new StringBuilder();
-            char[] input = ConvertToArray(userin);
+            char[] input = SharedFunctions.ConvertToArray(userin);
             List<char[]> tabulaRecta = new List<char[]>();
             tabulaRecta = GenerateCodeTable(shiftNum);
             char[] code = CodeString(input.Length, key);
 
             for (int i = 0; i < input.Length; i++)
             {
-                char[] temparray = tabulaRecta[Array.IndexOf(reference, Char.ToLower(code[i]))];
-                sb.Append(reference[Array.IndexOf(temparray, Char.ToLower(input[i]))]);
+                char[] temparray = tabulaRecta[Array.IndexOf(reference, Char.ToUpper(code[i]))];
+                sb.Append(reference[Array.IndexOf(temparray, Char.ToUpper(input[i]))]);
             }
 
             return sb.ToString().ToUpper();
         }
 
-        static char[] ConvertToArray(string userin)
-        {
-            char[] result = new char[userin.Length];
-            //Convert user input to array
-            for (int i = 0; i < userin.Length; i++)
-            {
-                result[i] = userin[i];
-            }
-            return result;
-        }
-        static Queue<char> PopulateQueue(char[] reference)
-        {
-            Queue<char> shift = new Queue<char>();
-            for (int i = 0; i < reference.Length; i++)
-            {
-                shift.Enqueue(reference[i]);
-            }
-            return shift;
-        }
-
         static List<char[]> GenerateCodeTable(int shiftNum)
         {
-            Queue<char> shift = PopulateQueue(reference);
+            Queue<char> shift = SharedFunctions.PopulateQueue(reference);
             List<char[]> tabulaRecta = new List<char[]>();
             for (int i = 0; i < shiftNum; i++)
             {

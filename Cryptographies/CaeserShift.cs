@@ -8,14 +8,14 @@ namespace Cryptographies
 {
     public static class CaeserShift
     {
-        static char[] reference = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+        static char[] reference = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
         public static string Encode(string userin, int shiftNum) 
         {
             StringBuilder sb = new StringBuilder();
-            char[] input = ConvertToArray(userin);
-            Queue<char> shift = PopulateQueue(reference);
-            shift = ShiftQueue(shift, shiftNum);
+            char[] input = SharedFunctions.ConvertToArray(userin);
+            Queue<char> shift = SharedFunctions.PopulateQueue(reference);
+            shift = SharedFunctions.ShiftQueue(shift, shiftNum);
             
             //Convert queue to array
             char[] code = shift.ToArray();
@@ -24,7 +24,7 @@ namespace Cryptographies
             {
                 if (letter != ' ')
                 {
-                    sb.Append(code[Array.IndexOf(reference, Char.ToLower(letter))]);
+                    sb.Append(code[Array.IndexOf(reference, Char.ToUpper(letter))]);
                 }
                 else
                 {
@@ -37,9 +37,9 @@ namespace Cryptographies
         public static string Decode(string userin, int shiftNum)
         {
             StringBuilder sb = new StringBuilder();
-            char[] input = ConvertToArray(userin);
-            Queue<char> shift = PopulateQueue(reference);
-            shift = ShiftQueue(shift, shiftNum);
+            char[] input = SharedFunctions.ConvertToArray(userin);
+            Queue<char> shift = SharedFunctions.PopulateQueue(reference);
+            shift = SharedFunctions.ShiftQueue(shift, shiftNum);
 
             char[] code = shift.ToArray();
 
@@ -47,7 +47,7 @@ namespace Cryptographies
             {
                 if (letter != ' ')
                 {
-                    sb.Append(reference[Array.IndexOf(code, Char.ToLower(letter))]);
+                    sb.Append(reference[Array.IndexOf(code, Char.ToUpper(letter))]);
                 }
                 else
                 {
@@ -56,36 +56,6 @@ namespace Cryptographies
             }
 
             return sb.ToString();
-        }
-
-        static char[] ConvertToArray(string userin)
-        {
-            char[] result = new char[userin.Length];
-            //Convert user input to array
-            for (int i = 0; i < userin.Length; i++)
-            {
-                result[i] = userin[i];
-            }
-            return result;
-        }
-        static Queue<char> PopulateQueue(char[] reference)
-        {
-            Queue<char> shift = new Queue<char>();
-            for (int i = 0; i < reference.Length; i++)
-            {
-                shift.Enqueue(reference[i]);
-            }
-            return shift;
-        }
-        
-        static Queue<char> ShiftQueue(Queue<char> shift, int shiftNum)
-        {
-            for (int i = 0; i < shiftNum; i++)
-            {
-                var templetter = shift.Dequeue();
-                shift.Enqueue(templetter);
-            }
-            return shift;
         }
     }
 }
