@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Cryptographies
 {
-    static class Vigenere
+    public static class Vigenere
     {
         static char[] reference = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 
@@ -14,8 +13,7 @@ namespace Cryptographies
         {
             StringBuilder sb = new StringBuilder();
             char[] input = SharedFunctions.ConvertToArray(userin);
-            List<char[]> tabulaRecta = new List<char[]>();
-            tabulaRecta = GenerateCodeTable(shiftNum);
+            List<char[]> tabulaRecta = GenerateCodeTable(shiftNum);
             char[] code = CodeString(input.Length, key);
 
             for(int i = 0; i < input.Length; i++)
@@ -33,8 +31,7 @@ namespace Cryptographies
         {
             StringBuilder sb = new StringBuilder();
             char[] input = SharedFunctions.ConvertToArray(userin);
-            List<char[]> tabulaRecta = new List<char[]>();
-            tabulaRecta = GenerateCodeTable(shiftNum);
+            List<char[]> tabulaRecta = GenerateCodeTable(shiftNum);
             char[] code = CodeString(input.Length, key);
 
             for (int i = 0; i < input.Length; i++)
