@@ -5,6 +5,8 @@ The application is fully functional utilizing the commandline and a basic GUI ha
 Currently the application demonstrates the Caesar Shift Cipher, Vigenere's Cipher, and the Kriegsmarine M3 Enigma machine.
 
 # Command Line Use
+Note: The solution will need to be modified to start with the Cryptographies project to use the command line.
+
 1. Upon loading the user is prompted to choose a crytopgraphy method then whether they wish to encode or decode a message.
 
 2. (a)For the Caesar Shift and Vigenere's the user will be prompted for a message and the number of positions the alphabet will be shifted for the substitution. Vigenere's will also ask for a key word.
