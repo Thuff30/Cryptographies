@@ -10,19 +10,20 @@ namespace Cryptographies
         public static string Encode(EnigmaSettings enigma, string userin)
         {
             char[] reference = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-            char[] input = userin.ToArray();
-            char tempLet;
             char letterOut;
             StringBuilder sb = new StringBuilder();
-            foreach (var letter in input)
+
+            foreach (var letter in userin)
             {
                 enigma = ShiftRotors(enigma);
+                //Convert queues to arrays for easier access and indexing
                 KeyValuePair<char, char>[] walzen1 = enigma.walzen1.ToArray();
                 KeyValuePair<char, char>[] walzen2 = enigma.walzen2.ToArray();
                 KeyValuePair<char, char>[] walzen3 = enigma.walzen3.ToArray();
-                if (!Char.IsWhiteSpace(letter))
+                //Check for punctuation until reliable source material for punctuation substitution is found
+                if (!Char.IsWhiteSpace(letter) || !Char.IsPunctuation(letter))
                 {
-
+                    //Pass letter through plugboard, rotors, and reflector
                     var tempValue = enigma.steckerbrett.FirstOrDefault(x=> x.Key == letter).Value;
                     var tempValue2 = walzen1[tempValue].Value;
                     tempValue = FindIndex(walzen1, tempValue2);
@@ -31,6 +32,8 @@ namespace Cryptographies
                     tempValue2 = walzen3[tempValue].Value;
                     tempValue = FindIndex(walzen3, tempValue2);
                     tempValue2 = enigma.umkehrwalze[tempValue];
+
+                    //Pass letter back through rotors and plugboard
                     tempValue = Array.IndexOf(reference, tempValue2);
                     tempValue2 = walzen3[tempValue].Key;
                     var tempValue3 = walzen3.FirstOrDefault(x => x.Value == tempValue2).Key;
@@ -42,12 +45,14 @@ namespace Cryptographies
                     tempValue3 = walzen1.FirstOrDefault(x => x.Value == tempValue2).Key;
                     tempValue = FindIndex(walzen1, tempValue3);
                     letterOut = enigma.steckerbrett.FirstOrDefault(x => x.Value == tempValue).Key;
+
                     sb.Append(letterOut);
                 }
                 else
                 {
                     sb.Append(letter);
                 }
+
             }
             return sb.ToString();
         }

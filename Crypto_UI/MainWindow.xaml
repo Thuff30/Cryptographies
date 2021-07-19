@@ -1,0 +1,20 @@
+﻿<Window x:Class="Crypto_UI.MainWindow"
+        Name="MainWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Crypto_UI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="579" Width="800">
+    <Grid>
+        <Frame Name="StartingFrame"/>
+        <TextBlock Name="MainInst" Text="Select the cryptography method you would like to use below." TextWrapping="Wrap" Margin="128,21,128,349" FontSize="20"/>
+        <RadioButton Name="CaesarRadio" Content="Caesar Shift Cipher" HorizontalAlignment="Left" Margin="180,70,0,0" VerticalAlignment="Top" Checked="CaesarRadio_Checked"/>
+        <RadioButton Name="VigenereRadio" Content="Vigenere's Cipher" HorizontalAlignment="Center" Margin="0,70,0,0" VerticalAlignment="Top" Checked="VigenereRadio_Checked"/>
+        <RadioButton Name="EnigmaRadio" Content="Enigma Kriegsmarine M3" HorizontalAlignment="Left" Margin="506,70,0,0" VerticalAlignment="Top" Checked="EnigmaRadio_Checked"/>
+        <Frame Name="FormFrame" Margin="0,90,0,23"/>
+
+
+    </Grid>
+</Window>
