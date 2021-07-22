@@ -3,20 +3,22 @@ using System.Collections.Generic;
 
 namespace Cryptographies
 {
-    static class SharedFunctions
+    public static class SharedFunctions
     {
         public static char[] ConvertToArray(string userin)
         {
-            char[] result = new char[userin.Length];
+            List<char> result = new List<char>();
+            //char[] result = new char[userin.Length];
+            char[] filteredInput = userin.ToCharArray();
             //Convert user input to array
-            for (int i = 0; i < userin.Length; i++)
+            foreach (var letter in filteredInput)
             {
-                if (userin[i] != ' ')
+                if (!Char.IsPunctuation(letter) && !Char.IsWhiteSpace(letter))
                 {
-                    result[i] = Char.ToUpper(userin[i]);
+                    result.Add(Char.ToUpper(letter));
                 }
             }
-            return result;
+            return result.ToArray();
         }
         public static Queue<char> PopulateQueue(char[] reference)
         {

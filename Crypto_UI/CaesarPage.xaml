@@ -10,20 +10,33 @@
       Background="AliceBlue">
 
     <Grid>
-        <RadioButton Name="EncodeRadio" GroupName="FunctionGroup" Content="Encode Message" HorizontalAlignment="Left" Margin="250,100,0,0" VerticalAlignment="Top" Click="EncodeRadio_Click"/>
-        <RadioButton Name="DecodeRadio" GroupName="FunctionGroup" Content="Decode Message" HorizontalAlignment="Left" Margin="450,100,0,0" VerticalAlignment="Top" Click="DecodeRadio_Click"/>
-
-        <TextBlock Name="EncodeText" HorizontalAlignment="Center" Margin="0,140,0,0" Text="Enter a message to encode" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Name="UserInput" HorizontalAlignment="Center" Margin="0,161,0,0" Text="Message" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="76"/>
-
-        <TextBlock Name="ShiftText" HorizontalAlignment="Center" Margin="0,242,0,0" Text="How many characters will the cipher shift?" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Name="Shift" HorizontalAlignment="Center" Margin="0,263,0,0" Text="Shift Count" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
-        <Button Name="ProcessShift" Content="Process" HorizontalAlignment="Left" Margin="340,298,0,0" VerticalAlignment="Top" Width="51" Click="ProcessShift_Click"/>
-        <Button Name="ClearForm" Content="Clear" HorizontalAlignment="Left" Margin="408,298,0,0" VerticalAlignment="Top" Width="52" Click="ClearForm_Click"/>
-
-        <TextBlock Name="ResultText" HorizontalAlignment="Center" Margin="0,328,0,0" Text="Result" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Name="Output" HorizontalAlignment="Center" Margin="0,349,0,0" Text="Result Text" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="77"/>
-
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="450" Width="800">
+            
+            <DockPanel HorizontalAlignment="Center" LastChildFill="False" Width="300" Height="65">
+                <RadioButton Name="EncodeRadio" GroupName="FunctionGroup" Content="Encode Message" HorizontalAlignment="Center" VerticalAlignment="Center" Click="EncodeRadio_Click" DockPanel.Dock="Left"/>
+                <RadioButton Name="DecodeRadio" GroupName="FunctionGroup" Content="Decode Message" HorizontalAlignment="Center" VerticalAlignment="Center" Click="DecodeRadio_Click" DockPanel.Dock="Right"/>
+            </DockPanel>
+            
+            <StackPanel Height="115">
+                <TextBlock Name="EncodeText" HorizontalAlignment="Center" Text="Enter a message to encode" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox Name="UserInput" HorizontalAlignment="Center" Text="Message" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="75"/>
+            </StackPanel>
+            
+            <StackPanel Height="50">
+                <TextBlock Name="ShiftText" HorizontalAlignment="Center" Text="How many characters will the cipher shift?" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                <TextBox Name="Shift" HorizontalAlignment="Center" Text="0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+            </StackPanel>
+            
+            <DockPanel VerticalAlignment="Center" LastChildFill="false" Width="200" Height="44">
+                <Button Name="ProcessShift" Content="Process" HorizontalAlignment="Center" VerticalAlignment="Center" Width="51" Click="ProcessShift_Click" DockPanel.Dock="Left"/>
+                <Button Name="ClearForm" Content="Clear" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="52" Click="ClearForm_Click" DockPanel.Dock="Right"/>
+            </DockPanel>
+            
+            <StackPanel Height="116">
+                <TextBlock Name="ResultText" HorizontalAlignment="Center" Text="Result" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                <TextBox Name="Output" HorizontalAlignment="Center" Text="Result Text" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="400" Height="77"/>
+            </StackPanel>
+            
+        </StackPanel>
     </Grid>
 </Page>

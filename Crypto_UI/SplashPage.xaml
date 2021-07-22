@@ -13,6 +13,6 @@
 
     <Grid>
         <Button Name="ViewMainPageButton" Background="AliceBlue" Click="ViewMainPageButton_Click"></Button>
-        <TextBlock FontSize="60" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow">Cryptography Example Application</TextBlock>
+        <TextBlock FontSize="60" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Height="156">Cryptography Example Application</TextBlock>
     </Grid>
 </Page>

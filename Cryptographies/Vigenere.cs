@@ -7,7 +7,7 @@ namespace Cryptographies
 {
     public static class Vigenere
     {
-        static char[] reference = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+        static char[] reference = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
         public static string Encode(string userin, string key, int shiftNum)
         {
@@ -64,10 +64,10 @@ namespace Cryptographies
 
         static char[] CodeString(int inputLength, string key)
         {
-            int repetitions = inputLength / key.Length;
-            int remainder = inputLength % key.Length;
             StringBuilder sb = new StringBuilder();
-            char[] keyArray = key.ToArray();
+            char[] keyArray = SharedFunctions.ConvertToArray(key);
+            int repetitions = inputLength / keyArray.Length;
+            int remainder = inputLength % keyArray.Length;
 
             for (int i = 0; i < repetitions; i++)
             {

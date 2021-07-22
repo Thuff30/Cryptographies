@@ -90,6 +90,17 @@
                 </DockPanel>
 
             </StackPanel>
+            <StackPanel>
+                <WrapPanel>
+                    
+                </WrapPanel>
+                <WrapPanel>
+                    
+                </WrapPanel>
+                <WrapPanel>
+                    
+                </WrapPanel>
+            </StackPanel>
 
         </DockPanel>
 
