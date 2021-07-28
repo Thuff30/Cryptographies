@@ -5,103 +5,246 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Crypto_UI"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="475" d:DesignWidth="800"
       Title="EnigmaPage"
       Background="AliceBlue">
 
     <Grid>
         <DockPanel LastChildFill="False">
-            <StackPanel Width="400" Height="354" DockPanel.Dock="Left">
-                <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" Text="Please select the rotors you would like to use."/>
-                <!--Comboboxes to represent the 3 rotors selected out of the possible 8-->
-                <DockPanel LastChildFill="False" Height="51" Width="440">
+            <WrapPanel Height="355" VerticalAlignment="Top" DockPanel.Dock="Top">
+                <StackPanel Width="400" Height="355" VerticalAlignment="Top">
+                    <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" Text="Please select the rotors you would like to use."/>
+                    <!--Comboboxes to represent the 3 rotors selected out of the possible 8-->
+                    <DockPanel LastChildFill="False" Height="51" Width="440">
 
-                    <StackPanel DockPanel.Dock="Right" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Rotor 1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="WalzenLage1" HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center" 
-                                      Width="70" SelectionChanged="WalzenLage1_SelectionChanged"/>
+                        <StackPanel DockPanel.Dock="Right" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Rotor 1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="WalzenLage1" HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" 
+                                          Width="70" SelectionChanged="WalzenLage1_SelectionChanged"/>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Left" Width="150" VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" Text="Rotor 3" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="WalzenLage3" HorizontalAlignment="Center" 
+                                         VerticalAlignment="Top" 
+                                         Width="70" SelectionChanged="WalzenLage3_SelectionChanged"/>
+                        </StackPanel>
+
+                        <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" Text="Rotor 2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <ComboBox x:Name="WalzenLage2" HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" 
+                                          Width="70" SelectionChanged="WalzenLage2_SelectionChanged"/>
+                        </StackPanel>
+
+                    </DockPanel>
+
+                    <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" 
+                                TextWrapping="Wrap" Text="Please select the starting positions for the rotors using the sliders below."/>
+
+                    <!--Sliders to represent starting positions of the 3 rotors-->
+                    <DockPanel LastChildFill="False" Height="244" Width="440">
+
+                        <DockPanel LastChildFill="False" Height="244" Width="150" DockPanel.Dock="Left">
+                            <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Content="Rotor 3"/>
+                            <Slider x:Name="Grundstellung3" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
+                                        Width="30" Height="200" TickPlacement="Both" 
+                                        TickFrequency="1" SmallChange="1" 
+                                        LargeChange="5" Minimum="0" 
+                                        Maximum="25" IsSnapToTickEnabled="True"
+                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
+                            <TextBlock Text="{Binding ElementName=Grundstellung3, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        TextWrapping="NoWrap" TextAlignment="Center" 
+                                        Width="30" DockPanel.Dock="
+                                        Bottom" Height="18" HorizontalAlignment="Center"/>
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="False" Height="244" Width="150">
+                            <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Content="Rotor 2"/>
+                            <Slider x:Name="Grundstellung2" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
+                                        Width="30" Height="200" TickPlacement="Both" 
+                                        TickFrequency="1" SmallChange="1" 
+                                        LargeChange="5" Minimum="0" 
+                                        Maximum="25" IsSnapToTickEnabled="True"
+                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
+                            <TextBlock Text="{Binding ElementName=Grundstellung2, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        TextWrapping="NoWrap" TextAlignment="Center" 
+                                        Width="30" DockPanel.Dock="
+                                        Bottom" Height="18" HorizontalAlignment="Center"/>
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="False" Height="244" Width="141" DockPanel.Dock="Right">
+                            <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Content="Rotor 1"/>
+                            <Slider x:Name="Grundstellung1" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
+                                        Width="30" Height="200" TickPlacement="Both" 
+                                        TickFrequency="1" SmallChange="1" 
+                                        LargeChange="5" Minimum="0" 
+                                        Maximum="25" IsSnapToTickEnabled="True"
+                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
+                            <TextBlock Text="{Binding ElementName=Grundstellung1, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        TextWrapping="NoWrap" TextAlignment="Center" 
+                                        Width="30" DockPanel.Dock="
+                                        Bottom" Height="18" HorizontalAlignment="Center"/>
+                        </DockPanel>
+
+                    </DockPanel>
+
+                </StackPanel>
+            
+                <StackPanel VerticalAlignment="Top" Width="400">
+                    <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Text="Please use the combo boxes below to select the connections for the plugboard."/>
+                
+                    <!--First row of plugboard-->
+                    <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
+                        <StackPanel Height="50">
+                            <Label Name="Q" FontSize="10" FontWeight="Bold" Content="Q" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="W" FontSize="10" FontWeight="Bold" Content="W" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="E" FontSize="10" FontWeight="Bold" Content="E" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="R" FontSize="10" FontWeight="Bold" Content="R" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="T" FontSize="10" FontWeight="Bold" Content="T" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="Z" FontSize="10" FontWeight="Bold" Content="Z" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="U" FontSize="10" FontWeight="Bold" Content="U" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="I" FontSize="10" FontWeight="Bold" Content="I" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="O" FontSize="10" FontWeight="Bold" Content="O" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                    </WrapPanel>
+                    <!--Second row of plugboard-->
+                    <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
+                        <StackPanel Height="50">
+                            <Label Name="A" FontSize="10" FontWeight="Bold" Content="A" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="S" FontSize="10" FontWeight="Bold" Content="S" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="D" FontSize="10" FontWeight="Bold" Content="D" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="F" FontSize="10" FontWeight="Bold" Content="F" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="G" FontSize="10" FontWeight="Bold" Content="G" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="H" FontSize="10" FontWeight="Bold" Content="H" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="J" FontSize="10" FontWeight="Bold" Content="J" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="K" FontSize="10" FontWeight="Bold" Content="K" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                    </WrapPanel>
+                    <!--Third row of plugboard-->
+                    <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
+                        <StackPanel Height="50">
+                            <Label Name="P" FontSize="10" FontWeight="Bold" Content="P" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="Y" FontSize="10" FontWeight="Bold" Content="Y" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="X" FontSize="10" FontWeight="Bold" Content="X" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="C" FontSize="10" FontWeight="Bold" Content="C" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="V" FontSize="10" FontWeight="Bold" Content="V" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="B" FontSize="10" FontWeight="Bold" Content="B" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="N" FontSize="10" FontWeight="Bold" Content="N" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="M" FontSize="10" FontWeight="Bold" Content="M" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Height="50">
+                            <Label Name="L" FontSize="10" FontWeight="Bold" Content="L" HorizontalAlignment="Center"/>
+                            <ComboBox Width="35"></ComboBox>
+                        </StackPanel>
+                    </WrapPanel>
+                    <TextBlock Text="Active Connections" TextAlignment="Center" FontWeight="Bold"/>
+                    <WrapPanel Height="75">
+                        <TextBlock Name="Conn0" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn1" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn2" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn3" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn4" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn5" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn6" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn7" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn8" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                        <TextBlock Name="Conn9" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                    </WrapPanel>
+                </StackPanel>
+
+            </WrapPanel>
+
+            <StackPanel Height="100">
+                <WrapPanel>
+                    <StackPanel Width="400">
+                        <TextBlock  Name="EncodeText" HorizontalAlignment="Center" Text="Enter a message to encode" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        <TextBox Name="UserInput" HorizontalAlignment="Center" Text="Message" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Height="50"/>
                     </StackPanel>
-
-                    <StackPanel DockPanel.Dock="Left" Width="150" VerticalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Center" Text="Rotor 3" TextWrapping="Wrap" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="WalzenLage3" HorizontalAlignment="Center" 
-                                     VerticalAlignment="Top" 
-                                     Width="70" SelectionChanged="WalzenLage3_SelectionChanged"/>
+            
+                    <StackPanel Width="400">
+                        <TextBlock Name="ResultText" HorizontalAlignment="Center" Text="Result" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        <TextBox Name="Output" HorizontalAlignment="Center" Text="Result Text" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="350" Height="50"/>
                     </StackPanel>
+                </WrapPanel>
 
-                    <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock HorizontalAlignment="Center" Text="Rotor 2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-                        <ComboBox x:Name="WalzenLage2" HorizontalAlignment="Center" 
-                                      VerticalAlignment="Center" 
-                                      Width="70" SelectionChanged="WalzenLage2_SelectionChanged"/>
-                    </StackPanel>
-
+                <DockPanel VerticalAlignment="Center" LastChildFill="false" Width="200" Height="45">
+                    <Button Name="ProcessShift" Content="Process" HorizontalAlignment="Center" VerticalAlignment="Center" Width="51" Click="ProcessShift_Click" DockPanel.Dock="Left"/>
+                    <Button Name="ClearForm" Content="Clear" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="52" Click="ClearForm_Click" DockPanel.Dock="Right"/>
                 </DockPanel>
-
-                <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" 
-                            TextWrapping="Wrap" Text="Please select the starting positions for the rotors using the sliders below."/>
-
-                <!--Sliders to represent starting positions of the 3 rotors-->
-                <DockPanel LastChildFill="False" Height="244" Width="440">
-
-                    <DockPanel LastChildFill="False" Height="244" Width="150" DockPanel.Dock="Left">
-                        <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Content="Rotor 3"/>
-                        <Slider x:Name="Grundstellung3" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
-                                    Width="30" Height="200" TickPlacement="Both" 
-                                    TickFrequency="1" SmallChange="1" 
-                                    LargeChange="5" Minimum="0" 
-                                    Maximum="25" IsSnapToTickEnabled="True"
-                                    ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
-                        <TextBlock Text="{Binding ElementName=Grundstellung3, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
-                                    TextWrapping="NoWrap" TextAlignment="Center" 
-                                    Width="30" DockPanel.Dock="
-                                    Bottom" Height="18" HorizontalAlignment="Center"/>
-                    </DockPanel>
-
-                    <DockPanel LastChildFill="False" Height="244" Width="150">
-                        <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Content="Rotor 2"/>
-                        <Slider x:Name="Grundstellung2" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
-                                    Width="30" Height="200" TickPlacement="Both" 
-                                    TickFrequency="1" SmallChange="1" 
-                                    LargeChange="5" Minimum="0" 
-                                    Maximum="25" IsSnapToTickEnabled="True"
-                                    ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
-                        <TextBlock Text="{Binding ElementName=Grundstellung2, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
-                                    TextWrapping="NoWrap" TextAlignment="Center" 
-                                    Width="30" DockPanel.Dock="
-                                    Bottom" Height="18" HorizontalAlignment="Center"/>
-                    </DockPanel>
-
-                    <DockPanel LastChildFill="False" Height="244" Width="141" DockPanel.Dock="Right">
-                        <Label DockPanel.Dock="Top" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Content="Rotor 1"/>
-                        <Slider x:Name="Grundstellung1" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
-                                    Width="30" Height="200" TickPlacement="Both" 
-                                    TickFrequency="1" SmallChange="1" 
-                                    LargeChange="5" Minimum="0" 
-                                    Maximum="25" IsSnapToTickEnabled="True"
-                                    ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
-                        <TextBlock Text="{Binding ElementName=Grundstellung1, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
-                                    TextWrapping="NoWrap" TextAlignment="Center" 
-                                    Width="30" DockPanel.Dock="
-                                    Bottom" Height="18" HorizontalAlignment="Center"/>
-                    </DockPanel>
-
-                </DockPanel>
-
+            
             </StackPanel>
-            <StackPanel>
-                <WrapPanel>
-                    
-                </WrapPanel>
-                <WrapPanel>
-                    
-                </WrapPanel>
-                <WrapPanel>
-                    
-                </WrapPanel>
-            </StackPanel>
-
+            
         </DockPanel>
 
     </Grid>

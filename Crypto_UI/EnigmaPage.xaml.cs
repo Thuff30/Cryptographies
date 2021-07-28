@@ -35,7 +35,6 @@ namespace Crypto_UI
         }
         public void PopulateWalzen(int nonRotor, int selected)
         {
-
             foreach (var rotor in Walzen)
             {
                 if (rotor == selected)
@@ -80,6 +79,16 @@ namespace Crypto_UI
         private void WalzenLage2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             PopulateWalzen(2, Int32.Parse(WalzenLage3.SelectedItem.ToString()));
+        }
+
+        private void ProcessShift_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearForm_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
