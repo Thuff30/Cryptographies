@@ -51,8 +51,8 @@
                             <Slider x:Name="Grundstellung3" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
                                         Width="30" Height="200" TickPlacement="Both" 
                                         TickFrequency="1" SmallChange="1" 
-                                        LargeChange="5" Minimum="0" 
-                                        Maximum="25" IsSnapToTickEnabled="True"
+                                        LargeChange="5" Minimum="1" 
+                                        Maximum="26" IsSnapToTickEnabled="True"
                                         ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
                             <TextBlock Text="{Binding ElementName=Grundstellung3, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
                                         TextWrapping="NoWrap" TextAlignment="Center" 
@@ -65,8 +65,8 @@
                             <Slider x:Name="Grundstellung2" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
                                         Width="30" Height="200" TickPlacement="Both" 
                                         TickFrequency="1" SmallChange="1" 
-                                        LargeChange="5" Minimum="0" 
-                                        Maximum="25" IsSnapToTickEnabled="True"
+                                        LargeChange="5" Minimum="1" 
+                                        Maximum="26" IsSnapToTickEnabled="True"
                                         ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
                             <TextBlock Text="{Binding ElementName=Grundstellung2, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
                                         TextWrapping="NoWrap" TextAlignment="Center" 
@@ -79,8 +79,8 @@
                             <Slider x:Name="Grundstellung1" Foreground="Black" HorizontalAlignment="Center" DockPanel.Dock="Top"
                                         Width="30" Height="200" TickPlacement="Both" 
                                         TickFrequency="1" SmallChange="1" 
-                                        LargeChange="5" Minimum="0" 
-                                        Maximum="25" IsSnapToTickEnabled="True"
+                                        LargeChange="5" Minimum="1" 
+                                        Maximum="26" IsSnapToTickEnabled="True"
                                         ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
                             <TextBlock Text="{Binding ElementName=Grundstellung1, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
                                         TextWrapping="NoWrap" TextAlignment="Center" 
@@ -98,114 +98,114 @@
                     <!--First row of plugboard-->
                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
                         <StackPanel Height="50">
-                            <Label Name="Q" FontSize="10" FontWeight="Bold" Content="Q" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="Q" HorizontalAlignment="Center"/>
+                            <ComboBox Name="Q" Width="40" SelectionChanged="Q_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="W" FontSize="10" FontWeight="Bold" Content="W" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="W" HorizontalAlignment="Center"/>
+                            <ComboBox Name="W" Width="40" SelectionChanged="W_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="E" FontSize="10" FontWeight="Bold" Content="E" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="E" HorizontalAlignment="Center"/>
+                            <ComboBox Name="E" Width="40" SelectionChanged="E_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="R" FontSize="10" FontWeight="Bold" Content="R" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="R" HorizontalAlignment="Center"/>
+                            <ComboBox Name="R" Width="40" SelectionChanged="R_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="T" FontSize="10" FontWeight="Bold" Content="T" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="T" HorizontalAlignment="Center"/>
+                            <ComboBox Name="T" Width="40" SelectionChanged="T_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="Z" FontSize="10" FontWeight="Bold" Content="Z" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="Z" HorizontalAlignment="Center"/>
+                            <ComboBox Name="Z" Width="40" SelectionChanged="Z_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="U" FontSize="10" FontWeight="Bold" Content="U" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="U" HorizontalAlignment="Center"/>
+                            <ComboBox Name="U" Width="40" SelectionChanged="U_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="I" FontSize="10" FontWeight="Bold" Content="I" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="I" HorizontalAlignment="Center"/>
+                            <ComboBox Name="I" Width="40" SelectionChanged="I_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="O" FontSize="10" FontWeight="Bold" Content="O" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="O" HorizontalAlignment="Center"/>
+                            <ComboBox Name="O" Width="40" SelectionChanged="O_SelectionChanged"></ComboBox>
                         </StackPanel>
                     </WrapPanel>
                     <!--Second row of plugboard-->
                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
                         <StackPanel Height="50">
-                            <Label Name="A" FontSize="10" FontWeight="Bold" Content="A" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="A" HorizontalAlignment="Center"/>
+                            <ComboBox Name="A" Width="40" SelectionChanged="A_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="S" FontSize="10" FontWeight="Bold" Content="S" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="S" HorizontalAlignment="Center"/>
+                            <ComboBox Name="S" Width="40" SelectionChanged="S_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="D" FontSize="10" FontWeight="Bold" Content="D" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="D" HorizontalAlignment="Center"/>
+                            <ComboBox Name="D" Width="40" SelectionChanged="D_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="F" FontSize="10" FontWeight="Bold" Content="F" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="F" HorizontalAlignment="Center"/>
+                            <ComboBox Name="F" Width="40" SelectionChanged="F_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="G" FontSize="10" FontWeight="Bold" Content="G" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="G" HorizontalAlignment="Center"/>
+                            <ComboBox Name="G" Width="40" SelectionChanged="G_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="H" FontSize="10" FontWeight="Bold" Content="H" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="H" HorizontalAlignment="Center"/>
+                            <ComboBox Name="H" Width="40" SelectionChanged="H_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="J" FontSize="10" FontWeight="Bold" Content="J" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="J" HorizontalAlignment="Center"/>
+                            <ComboBox Name="J" Width="40" SelectionChanged="J_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="K" FontSize="10" FontWeight="Bold" Content="K" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="K" HorizontalAlignment="Center"/>
+                            <ComboBox Name="K" Width="40" SelectionChanged="K_SelectionChanged"></ComboBox>
                         </StackPanel>
                     </WrapPanel>
                     <!--Third row of plugboard-->
                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
                         <StackPanel Height="50">
-                            <Label Name="P" FontSize="10" FontWeight="Bold" Content="P" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="P" HorizontalAlignment="Center"/>
+                            <ComboBox Name="P" Width="40" SelectionChanged="P_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="Y" FontSize="10" FontWeight="Bold" Content="Y" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="Y" HorizontalAlignment="Center"/>
+                            <ComboBox Name="Y" Width="40" SelectionChanged="Y_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="X" FontSize="10" FontWeight="Bold" Content="X" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="X" HorizontalAlignment="Center"/>
+                            <ComboBox Name="X" Width="40" SelectionChanged="X_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="C" FontSize="10" FontWeight="Bold" Content="C" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="C" HorizontalAlignment="Center"/>
+                            <ComboBox Name="C" Width="40" SelectionChanged="C_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="V" FontSize="10" FontWeight="Bold" Content="V" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="V" HorizontalAlignment="Center"/>
+                            <ComboBox Name="V" Width="40" SelectionChanged="V_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="B" FontSize="10" FontWeight="Bold" Content="B" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="B" HorizontalAlignment="Center"/>
+                            <ComboBox Name="B" Width="40" SelectionChanged="B_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="N" FontSize="10" FontWeight="Bold" Content="N" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="N" HorizontalAlignment="Center"/>
+                            <ComboBox Name="N" Width="40" SelectionChanged="N_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="M" FontSize="10" FontWeight="Bold" Content="M" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="M" HorizontalAlignment="Center"/>
+                            <ComboBox Name="M" Width="40" SelectionChanged="M_SelectionChanged"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
-                            <Label Name="L" FontSize="10" FontWeight="Bold" Content="L" HorizontalAlignment="Center"/>
-                            <ComboBox Width="35"></ComboBox>
+                            <Label FontSize="10" FontWeight="Bold" Content="L" HorizontalAlignment="Center"/>
+                            <ComboBox Name="L" Width="40" SelectionChanged="L_SelectionChanged"></ComboBox>
                         </StackPanel>
                     </WrapPanel>
                     <TextBlock Text="Active Connections" TextAlignment="Center" FontWeight="Bold"/>
