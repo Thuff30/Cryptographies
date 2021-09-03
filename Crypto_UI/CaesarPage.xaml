@@ -21,7 +21,9 @@
                 <TextBlock Name="EncodeText" HorizontalAlignment="Center" Text="Enter a message to encode" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 <TextBox Name="UserInput" HorizontalAlignment="Center" Text="Message" TextAlignment="Center" VerticalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Height="75"/>
             </StackPanel>
-            
+
+            <TextBlock Name="Error" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" Text=""/>
+
             <StackPanel Height="50">
                 <TextBlock Name="ShiftText" HorizontalAlignment="Center" Text="How many characters will the cipher shift?" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 <TextBox Name="Shift" HorizontalAlignment="Center" Text="0" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>

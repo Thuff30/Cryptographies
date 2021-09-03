@@ -12,7 +12,7 @@
     <Grid>
         <DockPanel LastChildFill="False">
             <WrapPanel Height="355" VerticalAlignment="Top" DockPanel.Dock="Top">
-                <StackPanel Width="400" Height="355" VerticalAlignment="Top">
+                <StackPanel Width="400" Height="355" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" Text="Please select the rotors you would like to use."/>
                     <!--Comboboxes to represent the 3 rotors selected out of the possible 8-->
                     <DockPanel LastChildFill="False" Height="51" Width="440">
@@ -92,134 +92,159 @@
 
                 </StackPanel>
             
-                <StackPanel VerticalAlignment="Top" Width="400">
+                <StackPanel VerticalAlignment="Top" Width="400" HorizontalAlignment="Center">
                     <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" Text="Please use the combo boxes below to select the connections for the plugboard."/>
                 
                     <!--First row of plugboard-->
                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="Q" HorizontalAlignment="Center"/>
-                            <ComboBox Name="Q" Width="40" SelectionChanged="Q_SelectionChanged"></ComboBox>
+                            <ComboBox Name="Q" Width="40" DropDownClosed="Q_DropDownClosed">
+                                <!--<ComboBoxItem Content="-" IsSelected="True"></ComboBoxItem>-->
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="W" HorizontalAlignment="Center"/>
-                            <ComboBox Name="W" Width="40" SelectionChanged="W_SelectionChanged"></ComboBox>
+                            <ComboBox Name="W" Width="40" DropDownClosed="W_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="E" HorizontalAlignment="Center"/>
-                            <ComboBox Name="E" Width="40" SelectionChanged="E_SelectionChanged"></ComboBox>
+                            <ComboBox Name="E" Width="40" DropDownClosed="E_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="R" HorizontalAlignment="Center"/>
-                            <ComboBox Name="R" Width="40" SelectionChanged="R_SelectionChanged"></ComboBox>
+                            <ComboBox Name="R" Width="40" DropDownClosed="R_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="T" HorizontalAlignment="Center"/>
-                            <ComboBox Name="T" Width="40" SelectionChanged="T_SelectionChanged"></ComboBox>
+                            <ComboBox Name="T" Width="40" DropDownClosed="T_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="Z" HorizontalAlignment="Center"/>
-                            <ComboBox Name="Z" Width="40" SelectionChanged="Z_SelectionChanged"></ComboBox>
+                            <ComboBox Name="Z" Width="40" DropDownClosed="Z_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="U" HorizontalAlignment="Center"/>
-                            <ComboBox Name="U" Width="40" SelectionChanged="U_SelectionChanged"></ComboBox>
+                            <ComboBox Name="U" Width="40" DropDownClosed="U_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="I" HorizontalAlignment="Center"/>
-                            <ComboBox Name="I" Width="40" SelectionChanged="I_SelectionChanged"></ComboBox>
+                            <ComboBox Name="I" Width="40" DropDownClosed="I_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="O" HorizontalAlignment="Center"/>
-                            <ComboBox Name="O" Width="40" SelectionChanged="O_SelectionChanged"></ComboBox>
+                            <ComboBox Name="O" Width="40" DropDownClosed="O_DropDownClosed"></ComboBox>
                         </StackPanel>
                     </WrapPanel>
                     <!--Second row of plugboard-->
                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="A" HorizontalAlignment="Center"/>
-                            <ComboBox Name="A" Width="40" SelectionChanged="A_SelectionChanged"></ComboBox>
+                            <ComboBox Name="A" Width="40" DropDownClosed="A_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="S" HorizontalAlignment="Center"/>
-                            <ComboBox Name="S" Width="40" SelectionChanged="S_SelectionChanged"></ComboBox>
+                            <ComboBox Name="S" Width="40" DropDownClosed="S_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="D" HorizontalAlignment="Center"/>
-                            <ComboBox Name="D" Width="40" SelectionChanged="D_SelectionChanged"></ComboBox>
+                            <ComboBox Name="D" Width="40" DropDownClosed="D_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="F" HorizontalAlignment="Center"/>
-                            <ComboBox Name="F" Width="40" SelectionChanged="F_SelectionChanged"></ComboBox>
+                            <ComboBox Name="F" Width="40" DropDownClosed="F_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="G" HorizontalAlignment="Center"/>
-                            <ComboBox Name="G" Width="40" SelectionChanged="G_SelectionChanged"></ComboBox>
+                            <ComboBox Name="G" Width="40" DropDownClosed="G_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="H" HorizontalAlignment="Center"/>
-                            <ComboBox Name="H" Width="40" SelectionChanged="H_SelectionChanged"></ComboBox>
+                            <ComboBox Name="H" Width="40" DropDownClosed="H_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="J" HorizontalAlignment="Center"/>
-                            <ComboBox Name="J" Width="40" SelectionChanged="J_SelectionChanged"></ComboBox>
+                            <ComboBox Name="J" Width="40" DropDownClosed="J_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="K" HorizontalAlignment="Center"/>
-                            <ComboBox Name="K" Width="40" SelectionChanged="K_SelectionChanged"></ComboBox>
+                            <ComboBox Name="K" Width="40" DropDownClosed="K_DropDownClosed"></ComboBox>
                         </StackPanel>
                     </WrapPanel>
                     <!--Third row of plugboard-->
                     <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="75">
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="P" HorizontalAlignment="Center"/>
-                            <ComboBox Name="P" Width="40" SelectionChanged="P_SelectionChanged"></ComboBox>
+                            <ComboBox Name="P" Width="40" DropDownClosed="P_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="Y" HorizontalAlignment="Center"/>
-                            <ComboBox Name="Y" Width="40" SelectionChanged="Y_SelectionChanged"></ComboBox>
+                            <ComboBox Name="Y" Width="40" DropDownClosed="Y_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="X" HorizontalAlignment="Center"/>
-                            <ComboBox Name="X" Width="40" SelectionChanged="X_SelectionChanged"></ComboBox>
+                            <ComboBox Name="X" Width="40" DropDownClosed="X_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="C" HorizontalAlignment="Center"/>
-                            <ComboBox Name="C" Width="40" SelectionChanged="C_SelectionChanged"></ComboBox>
+                            <ComboBox Name="C" Width="40" DropDownClosed="C_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="V" HorizontalAlignment="Center"/>
-                            <ComboBox Name="V" Width="40" SelectionChanged="V_SelectionChanged"></ComboBox>
+                            <ComboBox Name="V" Width="40" DropDownClosed="V_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="B" HorizontalAlignment="Center"/>
-                            <ComboBox Name="B" Width="40" SelectionChanged="B_SelectionChanged"></ComboBox>
+                            <ComboBox Name="B" Width="40" DropDownClosed="B_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="N" HorizontalAlignment="Center"/>
-                            <ComboBox Name="N" Width="40" SelectionChanged="N_SelectionChanged"></ComboBox>
+                            <ComboBox Name="N" Width="40" DropDownClosed="N_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="M" HorizontalAlignment="Center"/>
-                            <ComboBox Name="M" Width="40" SelectionChanged="M_SelectionChanged"></ComboBox>
+                            <ComboBox Name="M" Width="40" DropDownClosed="M_DropDownClosed"></ComboBox>
                         </StackPanel>
                         <StackPanel Height="50">
                             <Label FontSize="10" FontWeight="Bold" Content="L" HorizontalAlignment="Center"/>
-                            <ComboBox Name="L" Width="40" SelectionChanged="L_SelectionChanged"></ComboBox>
+                            <ComboBox Name="L" Width="40" DropDownClosed="L_DropDownClosed"></ComboBox>
                         </StackPanel>
                     </WrapPanel>
+                    <!-- Output to display active connections to user-->
                     <TextBlock Text="Active Connections" TextAlignment="Center" FontWeight="Bold"/>
-                    <WrapPanel Height="75">
-                        <TextBlock Name="Conn0" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn1" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn2" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn3" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn4" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn5" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn6" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn7" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn8" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
-                        <TextBlock Name="Conn9" VerticalAlignment="Center" TextAlignment="Center" Text=" _&lt;->_ "/>
+                    <WrapPanel Height="40" HorizontalAlignment="Center">
+                        <TextBlock Name="Conn0" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFiller1" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn1" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn2" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFiller2" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn3" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn4" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFille3" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn5" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn6" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFiller4" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn7" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn8" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFiller5" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn9" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                    </WrapPanel>
+                    <WrapPanel Height="35" HorizontalAlignment="Center">
+                        <TextBlock Name="Conn10" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFille6" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn11" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn12" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFiller7" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn13" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn14" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFiller8" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn15" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn16" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFill9" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn17" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
+                        <TextBlock Name="Conn18" VerticalAlignment="Center" TextAlignment="Center" Text=" _"/>
+                        <TextBlock Name="ConnFill10" VerticalAlignment="Center" TextAlignment="Center" Text="&lt;->"/>
+                        <TextBlock Name="Conn19" VerticalAlignment="Center" TextAlignment="Center" Text="_ "/>
                     </WrapPanel>
                 </StackPanel>
 

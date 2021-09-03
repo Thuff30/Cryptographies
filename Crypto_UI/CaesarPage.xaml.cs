@@ -15,13 +15,26 @@ namespace Crypto_UI
 
         private void ProcessShift_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)EncodeRadio.IsChecked)
+            if (!String.IsNullOrWhiteSpace(UserInput.Text) && !String.IsNullOrWhiteSpace(Shift.Text))
             {
-                Output.Text = CaeserShift.Encode(UserInput.Text, Int32.Parse(Shift.Text));
+                if ((bool)EncodeRadio.IsChecked)
+                {
+                    Error.Text = "";
+                    Output.Text = CaeserShift.Encode(UserInput.Text, Int32.Parse(Shift.Text));
+                }
+                else if ((bool)DecodeRadio.IsChecked)
+                {
+                    Error.Text = "";
+                    Output.Text = CaeserShift.Decode(UserInput.Text, Int32.Parse(Shift.Text));
+                }
+                else
+                {
+                    Error.Text = "Please select Encode or Decode to process your message.";
+                }
             }
-            if ((bool)DecodeRadio.IsChecked)
+            else
             {
-                Output.Text = CaeserShift.Decode(UserInput.Text, Int32.Parse(Shift.Text));
+                Error.Text = "Please enter a message to encode and the number of lettters the cipher will shift.";
             }
         }
 
@@ -29,6 +42,7 @@ namespace Crypto_UI
         {
             UserInput.Text = "Message";
             Output.Text = "Result";
+            Error.Text = "";
         }
 
         private void EncodeRadio_Click(object sender, RoutedEventArgs e)

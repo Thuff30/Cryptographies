@@ -26,98 +26,272 @@ namespace Crypto_UI
             PopulateWalzen();
             PopulateSteckerbrett();
 
-        }
-        public void PopulateWalzen() 
+        }              
+
+        private void Grundstellung1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            foreach(var rotor in Walzen)
+
+        }
+
+        #region Walzen
+        private void WalzenLage3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (WalzenLage1.SelectedItem != null && WalzenLage2.SelectedItem != null)
+            {
+                //Verify no other walzen has the chosen rotor already selected
+                if (WalzenLage3.SelectedItem.ToString() == WalzenLage2.SelectedItem.ToString() && WalzenLage2.SelectedItem.ToString() != "-" ||
+                    WalzenLage3.SelectedItem.ToString() == WalzenLage1.SelectedItem.ToString() && WalzenLage1.SelectedItem.ToString() != "-")
+                {
+                    WalzenLage3.SelectedIndex = WalzenLage3.Items.IndexOf("-");
+                }
+            }
+        }
+
+        private void WalzenLage1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (WalzenLage2.SelectedItem != null && WalzenLage3.SelectedItem != null)
+            {
+                //Verify no other walzen has the chosen rotor already selected
+                if (WalzenLage1.SelectedItem.ToString() == WalzenLage2.SelectedItem.ToString() && WalzenLage2.SelectedItem.ToString() != "-" ||
+                    WalzenLage1.SelectedItem.ToString() == WalzenLage3.SelectedItem.ToString() && WalzenLage3.SelectedItem.ToString() != "-")
+                {
+                    WalzenLage1.SelectedIndex = WalzenLage1.Items.IndexOf("-");
+                }
+            }
+        }
+
+        private void WalzenLage2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if (WalzenLage1.SelectedItem != null && WalzenLage3.SelectedItem != null)
+            {
+                //Verify no other walzen has the chosen rotor already selected
+                if (WalzenLage2.SelectedItem.ToString() == WalzenLage3.SelectedItem.ToString() && WalzenLage3.SelectedItem.ToString() != "-" ||
+                    WalzenLage2.SelectedItem.ToString() == WalzenLage1.SelectedItem.ToString() && WalzenLage1.SelectedItem.ToString() != "-")
+                {
+                    WalzenLage2.SelectedIndex = WalzenLage2.Items.IndexOf("-");
+                }
+            }
+        }
+
+        public void PopulateWalzen()
+        {
+            WalzenLage1.Items.Add("-");
+            WalzenLage1.SelectedIndex = 0;
+            WalzenLage2.Items.Add("-");
+            WalzenLage2.SelectedIndex = 0;
+            WalzenLage3.Items.Add("-");
+            WalzenLage3.SelectedIndex = 0;
+
+            foreach (var rotor in Walzen)
             {
                 WalzenLage1.Items.Add(rotor);
                 WalzenLage2.Items.Add(rotor);
                 WalzenLage3.Items.Add(rotor);
             }
         }
-        public void PopulateWalzen(int nonRotor, int selected)
+        #endregion
+
+        #region buttons
+        private void ProcessShift_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var rotor in Walzen)
+            string userin;
+            List<int> grundstellung = new List<int>();
+            List<int> walzenlage = new List<int>();
+            char umkehrwalzenChoice;
+            Dictionary<char, char> steckerbrett = new Dictionary<char, char>();
+        }
+
+        private void ClearForm_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Steckerbrett
+        private void Q_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(Q);
+        }
+
+        private void W_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(W);
+        }
+
+        private void E_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(E);
+        }
+
+        private void R_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(R);
+        }
+
+        private void T_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(T);
+        }
+
+        private void Z_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(Z);
+        }
+
+        private void U_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(U);
+        }
+
+        private void I_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(I);
+        }
+
+        private void O_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(O);
+        }
+
+        private void A_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(A);
+        }
+
+        private void S_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(S);
+        }
+
+        private void D_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(D);
+        }
+
+        private void F_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(F);
+        }
+
+        private void G_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(G);
+        }
+
+        private void H_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(H);
+        }
+
+        private void J_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(J);
+        }
+
+        private void K_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(K);
+        }
+
+        private void P_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(P);
+        }
+
+        private void Y_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(Y);
+        }
+
+        private void X_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(X);
+        }
+
+        private void C_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(C);
+        }
+
+        private void V_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(V);
+        }
+
+        private void B_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(B);
+        }
+
+        private void N_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(N);
+        }
+
+        private void M_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(M);
+        }
+
+        private void L_DropDownClosed(object sender, EventArgs e)
+        {
+            DecideSteckerAction(L);
+        }
+        #endregion
+
+        #region SteckerbrettFunctions
+
+        public void ResetStecker()
+        {
+            List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
+            foreach (var box in stecker)
             {
-                if (rotor == selected)
+                box.SelectedIndex = 0;
+            }
+        }
+
+        public void ResetStecker(string triggerBox)
+        {
+            List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
+            foreach (var box in stecker)
+            {
+                //Verfiy the combobox has items has an item selected and that item is equal to the triggering combobox's name
+                if (box.HasItems && box.SelectedItem != null && box.SelectedItem.ToString() == triggerBox)
                 {
-                    switch (nonRotor)
-                    {
-                        case 1:
-                            if (WalzenLage2.Items.Contains(rotor))
-                            {
-                                WalzenLage2.Items.Remove(rotor);
-                            }
-                            if (WalzenLage3.Items.Contains(rotor))
-                            {
-                                WalzenLage3.Items.Remove(rotor);
-                            }
-                            break;
-                        case 2:
-                            if (WalzenLage1.Items.Contains(rotor))
-                            {
-                                WalzenLage1.Items.Remove(rotor);
-                            }
-                            if (WalzenLage3.Items.Contains(rotor))
-                            {
-                                WalzenLage3.Items.Remove(rotor);
-                            }
-                            break;
-                        case 3:
-                            if (WalzenLage1.Items.Contains(rotor))
-                            {
-                                WalzenLage1.Items.Remove(rotor);
-                            }
-                            if (WalzenLage2.Items.Contains(rotor))
-                            {
-                                WalzenLage2.Items.Remove(rotor);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
-                {
-                    if (!WalzenLage1.Items.Contains(rotor) && checkWalzen(WalzenLage2, rotor) && checkWalzen(WalzenLage3,rotor))
-                    {
-                        WalzenLage1.Items.Insert(rotor - 1, rotor);
-                    }
-                    if (!WalzenLage2.Items.Contains(rotor) && checkWalzen(WalzenLage1, rotor) && checkWalzen(WalzenLage3, rotor))
-                    {
-                        WalzenLage2.Items.Insert(rotor - 1, rotor);
-                    }
-                    if (!WalzenLage3.Items.Contains(rotor) && checkWalzen(WalzenLage1, rotor) && checkWalzen(WalzenLage2, rotor))
-                    {
-                        WalzenLage3.Items.Insert(rotor - 1, rotor);
-                    }
+                    box.SelectedIndex = 0;
+                    break;
                 }
             }
         }
-        private bool checkWalzen(ComboBox walzen, int check)
+
+        private void DecideSteckerAction(ComboBox stecker)
         {
-            if(walzen.SelectedItem != null)
+            //Determine if a connection has been set or removed
+            if (stecker.SelectedItem == null)
             {
-                if(Int32.Parse(walzen.SelectedItem.ToString()) != check){
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                stecker.SelectedIndex = 0;
             }
-            else
+            else if (stecker.SelectedItem.ToString() != "-")
             {
-                return true;
+                UpdateSteckerbrett(stecker);
+            }
+            else if (stecker.SelectedItem.ToString() == "-")
+            {
+                ResetStecker(stecker.Name.ToString());
             }
         }
+
         public void PopulateSteckerbrett()
         {
             List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
-            foreach (var letter in reference)
+            foreach (var box in stecker)
             {
-                foreach (var box in stecker)
+                box.Items.Add("-"); //Buffer to indicate no connection
+                box.SelectedIndex = 0;
+                foreach (var letter in reference)
                 {
                     if (box.Name != letter.ToString())
                     {
@@ -126,254 +300,88 @@ namespace Crypto_UI
                 }
             }
         }
-        public void PopulateSteckerbrett(char selectedBox, char selected)
+
+        public void UpdateSteckerbrett(ComboBox triggerBox)
         {
             List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
 
-            foreach (var box in stecker)
+            //Verify less than 10 connections exist or the triggering combobox is one that was part of a previous connection
+            if (Conn19.Text == "_ " || CheckConnections(triggerBox)) 
             {
-                if(box.Name != selectedBox.ToString() && box.Items.Contains(selected))
+                foreach (var box in stecker)
                 {
-                        box.Items.Remove(selected);
+                    if (box != null)
+                    {
+                        //Verify combobox is not the triggering combobox and its name matches the one selected
+                        if (box.Name != triggerBox.Name && box.Name == triggerBox.SelectedItem.ToString())
+                        {
+                            box.SelectedIndex = box.Items.IndexOf(Char.Parse(triggerBox.Name));
+                        }
+                        //Verify the combobox is not selected, is not the triggering combobox, is not not and the selected item is the triggering combobox
+                        else if (box.Name != triggerBox.SelectedItem.ToString() && box.Name != triggerBox.Name && box.SelectedItem != null &&
+                            box.SelectedItem.ToString() == triggerBox.Name)
+                        {
+                            box.SelectedIndex = 0;
+                        }
+                    }
                 }
-                if(box.Name == selected.ToString())
+
+                AddConnections(triggerBox);
+            }
+
+
+        }
+
+        public bool CheckConnections(ComboBox triggerBox)
+        {
+            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
+                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+
+            foreach(var conn in Connections)
+            {
+                if(conn.Text == triggerBox.Name || conn.Text == triggerBox.SelectedItem.ToString())
                 {
-                    box.SelectedIndex = box.Items.IndexOf(selectedBox);
-                }
-                else if(box.Items.Contains(selectedBox))
-                {
-                    box.Items.Remove(selectedBox);
+                    return true;
                 }
             }
-            foreach(var letter in reference)
-            {
-                if (CheckStecker(stecker, letter))
-                {
-                    foreach (var box in stecker)
-                    {
-                        if (!box.Items.Contains(letter))
-                        {
-                            if (Array.IndexOf(reference, letter) - 1 < 0)
-                            {
-                                box.Items.Insert(0, letter);
+            return false;
+        }
 
-                            }
-                            else 
-                            { 
-                                var prelet = reference[Array.IndexOf(reference, letter) - 1];
-                                box.Items.Insert(box.Items.IndexOf(reference[Array.IndexOf(reference, letter) - 1]) + 1, letter);
-                            }
-                        }
+        public void AddConnections(ComboBox triggerBox)
+        {
+            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9, 
+                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+
+            //Verify if the triggering combobox is part of an existing connection
+            if (CheckConnections(triggerBox))
+            {
+
+            }
+            else
+            {
+                foreach (var conn in Connections)
+                {
+                    if (conn.Text == " _" || conn.Text == "_ ")
+                    {
+                        conn.Text = " " + triggerBox.Name;
+                        var conn2 = Connections[Connections.IndexOf(conn) + 1];
+                        conn2.Text = triggerBox.SelectedItem.ToString() + " ";
+                        break;
                     }
                 }
             }
         }
-        private bool CheckStecker(List<ComboBox> stecker, char letter)
+
+        public void RemoveConnection(ComboBox comboBox)
         {
-            foreach(var box in stecker)
+            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
+                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+
+            foreach(var conn in Connections)
             {
-                if(box.SelectedItem != null && Char.Parse(box.SelectedItem.ToString()) == letter)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
 
-        private void Grundstellung1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
-        }
-
-        private void WalzenLage3_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateWalzen(3, Int32.Parse(WalzenLage3.SelectedItem.ToString()));
-        }
-
-        private void WalzenLage1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateWalzen(1, Int32.Parse(WalzenLage1.SelectedItem.ToString()));
-        }
-
-        private void WalzenLage2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateWalzen(2, Int32.Parse(WalzenLage2.SelectedItem.ToString()));
-        }
-
-        private void ProcessShift_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ClearForm_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Q_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (Q.SelectedItem != null)
-            {
-                PopulateSteckerbrett('Q', Char.Parse(Q.SelectedItem.ToString()));
             }
         }
-
-        private void W_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (W.SelectedItem != null)
-            {
-                PopulateSteckerbrett('W', Char.Parse(W.SelectedItem.ToString()));
-            }
-        }
-
-        private void E_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (E.SelectedItem != null)
-            {
-                PopulateSteckerbrett('E', Char.Parse(E.SelectedItem.ToString()));
-            }
-        }
-
-        private void R_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (R.SelectedItem != null)
-            {
-                PopulateSteckerbrett('R', Char.Parse(R.SelectedItem.ToString()));
-            }
-        }
-
-        private void T_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (T.SelectedItem != null)
-            {
-                PopulateSteckerbrett('T', Char.Parse(T.SelectedItem.ToString()));
-            }
-        }
-
-        private void Z_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('Z', Char.Parse(Z.SelectedItem.ToString()));
-
-        }
-
-        private void U_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('U', Char.Parse(U.SelectedItem.ToString()));
-
-        }
-
-        private void I_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('I', Char.Parse(I.SelectedItem.ToString()));
-
-        }
-
-        private void O_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('O', Char.Parse(O.SelectedItem.ToString()));
-
-        }
-
-        private void A_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('A', Char.Parse(A.SelectedItem.ToString()));
-
-        }
-
-        private void S_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('S', Char.Parse(S.SelectedItem.ToString()));
-
-        }
-
-        private void D_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('D', Char.Parse(D.SelectedItem.ToString()));
-
-        }
-
-        private void F_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('F', Char.Parse(F.SelectedItem.ToString()));
-
-        }
-
-        private void G_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('G', Char.Parse(G.SelectedItem.ToString()));
-
-        }
-
-        private void H_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('H', Char.Parse(H.SelectedItem.ToString()));
-
-        }
-
-        private void J_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('J', Char.Parse(J.SelectedItem.ToString()));
-
-        }
-
-        private void K_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('K', Char.Parse(K.SelectedItem.ToString()));
-
-        }
-
-        private void P_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('P', Char.Parse(P.SelectedItem.ToString()));
-
-        }
-
-        private void Y_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('Y', Char.Parse(Y.SelectedItem.ToString()));
-
-        }
-
-        private void X_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('X', Char.Parse(X.SelectedItem.ToString()));
-
-        }
-
-        private void C_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('C', Char.Parse(C.SelectedItem.ToString()));
-
-        }
-
-        private void V_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('V', Char.Parse(V.SelectedItem.ToString()));
-
-        }
-
-        private void B_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('B', Char.Parse(B.SelectedItem.ToString()));
-
-        }
-
-        private void N_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('N', Char.Parse(N.SelectedItem.ToString()));
-
-        }
-
-        private void M_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('M', Char.Parse(M.SelectedItem.ToString()));
-
-        }
-
-        private void L_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            PopulateSteckerbrett('L', Char.Parse(L.SelectedItem.ToString()));
-
-        }
+        #endregion
     }
 }
