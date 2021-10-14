@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cryptographies.Objects;
 
 namespace Cryptographies
 {
@@ -7,23 +8,43 @@ namespace Cryptographies
     {
         static char[] reference = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-        public static string Encode(string userin, List<int> grundstellung, List<int> walzenlage, char umkehrwalzeChoice, Dictionary<char, char> steckerbrett) {
+        public static string Encode(string userin, EnigmaInput input) {
             
             EnigmaSettings settings = new EnigmaSettings {
-                walzenlage = walzenlage,
-                walzen1 = ShiftRotor(PopulateQueue(walzenlage[0]), grundstellung[0]),
-                walzen2 = ShiftRotor(PopulateQueue(walzenlage[1]), grundstellung[1]),
-                walzen3 = ShiftRotor(PopulateQueue(walzenlage[2]), grundstellung[2]),
-                turnover = WalzenWende(walzenlage),
-                positions = grundstellung,
-                umkehrwalze = AssignUmkehrwalze(Char.ToUpper(umkehrwalzeChoice)),
-                steckerbrett = Steckerverbindungen(steckerbrett, reference)
+                walzenlage = input.Walzenlage,
+                walzen1 = ShiftRotor(PopulateQueue(input.Walzenlage[0]), input.Grundstellung[0]),
+                walzen2 = ShiftRotor(PopulateQueue(input.Walzenlage[1]), input.Grundstellung[1]),
+                walzen3 = ShiftRotor(PopulateQueue(input.Walzenlage[2]), input.Grundstellung[2]),
+                turnover = WalzenWende(input.Walzenlage),
+                positions = input.Grundstellung,
+                umkehrwalze = AssignUmkehrwalze(Char.ToUpper(input.UmkherwalzeChoice)),
+                steckerbrett = Steckerverbindungen(input.Steckerbrett, reference)
             };
 
             string output = EnigmaFunctions.Encode(settings, userin);
             return output;
         }
 
+        public static string Decode(string userin, EnigmaInput input)
+        {
+
+            EnigmaSettings settings = new EnigmaSettings
+            {
+                walzenlage = input.Walzenlage,
+                walzen1 = ShiftRotor(PopulateQueue(input.Walzenlage[0]), input.Grundstellung[0]),
+                walzen2 = ShiftRotor(PopulateQueue(input.Walzenlage[1]), input.Grundstellung[1]),
+                walzen3 = ShiftRotor(PopulateQueue(input.Walzenlage[2]), input.Grundstellung[2]),
+                turnover = WalzenWende(input.Walzenlage),
+                positions = input.Grundstellung,
+                umkehrwalze = AssignUmkehrwalze(Char.ToUpper(input.UmkherwalzeChoice)),
+                steckerbrett = Steckerverbindungen(input.Steckerbrett, reference)
+            };
+
+            string output = EnigmaFunctions.Decode(settings, userin);
+            return output;
+        }
+
+        //Returns a queue that will act as the rotors
         static Queue<KeyValuePair<char, char>> PopulateQueue(int rotorNum)
         {
             char[] array = AssignArray(rotorNum);
@@ -36,6 +57,7 @@ namespace Cryptographies
             return rotor;
         }
 
+        //Determines which array should be used to represent the internal wiring of the rotors based on the rotors selected
         static char[] AssignArray(int rotorNum)
         {
             char[] wiring = new char[26];
@@ -70,6 +92,7 @@ namespace Cryptographies
             return wiring;
         }
 
+        //Returns a dictionary containing the positions at which the rotors should trigger the next rotor in the series to move one notch 
         static Dictionary<int, int> WalzenWende(List<int> walzenlage)
         {
             Dictionary<int, int> turnover = new Dictionary<int, int>();
@@ -115,6 +138,7 @@ namespace Cryptographies
             return turnover;
         }
 
+        //Returns a list representing the wiring of the chosen reflector
         static List<char> AssignUmkehrwalze(char umkehrwalzeChoice)
         {
             List<char> umkerhwalze = new List<char>();
@@ -130,6 +154,7 @@ namespace Cryptographies
             return umkerhwalze;
         }
 
+        //Shifts a rotor a predetermined number of positions
         static Queue<KeyValuePair<char, char>> ShiftRotor(Queue<KeyValuePair<char, char>> rotor, int shiftNum)
         {
             for (int i = 0; i < shiftNum; i++)
@@ -140,6 +165,7 @@ namespace Cryptographies
             return rotor;
         }
 
+        //Returns a dictionary containing the connections on the plugboard
         static Dictionary<char, int> Steckerverbindungen(Dictionary<char, char> steckerbrett, char[] reference)
         {
             Dictionary<char, int> stecker = new Dictionary<char, int>();

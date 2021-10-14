@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="900">
     <Grid>
-        <Frame Name="StartingFrame"/>
+        <Frame Name="StartingFrame" NavigationUIVisibility="Hidden"/>
         <StackPanel>
             <StackPanel Height="150">
                 <TextBlock x:Name="MainInst" Text="Select the cryptography method you would like to use below." TextAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="28" Width="800" Height="60"/>
@@ -18,7 +18,7 @@
                     <RadioButton x:Name="EnigmaRadio" GroupName="CryptoSelect" Content="Enigma Kriegsmarine M3" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="EnigmaRadio_Checked"/>
                 </StackPanel>
             </StackPanel>
-            <Frame Name="FormFrame" Height="450"/>
+            <Frame Name="FormFrame" Height="450" NavigationUIVisibility="Hidden"/>
         </StackPanel>
 
     </Grid>

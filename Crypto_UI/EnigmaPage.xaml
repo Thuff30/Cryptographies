@@ -15,26 +15,32 @@
                 <StackPanel Width="400" Height="355" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" Text="Please select the rotors you would like to use."/>
                     <!--Comboboxes to represent the 3 rotors selected out of the possible 8-->
-                    <DockPanel LastChildFill="False" Height="51" Width="440">
+                    <DockPanel LastChildFill="False" Height="51" Width="400">
 
-                        <StackPanel DockPanel.Dock="Right" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel DockPanel.Dock="Right" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Rotor 1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <ComboBox x:Name="WalzenLage1" HorizontalAlignment="Center" 
-                                          VerticalAlignment="Center" 
+                                          VerticalAlignment="Center" HorizontalContentAlignment="Center"
                                           Width="70" SelectionChanged="WalzenLage1_SelectionChanged"/>
                         </StackPanel>
 
-                        <StackPanel DockPanel.Dock="Left" Width="150" VerticalAlignment="Center">
+                        <StackPanel DockPanel.Dock="Left" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Reflector"/>
+                            <ComboBox Name="Umkehrwalzen" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                      HorizontalContentAlignment="Center" Width="70"/>
+                        </StackPanel>
+                        
+                        <StackPanel DockPanel.Dock="Left" Width="100" VerticalAlignment="Center">
                             <TextBlock HorizontalAlignment="Center" Text="Rotor 3" TextWrapping="Wrap" VerticalAlignment="Center"/>
                             <ComboBox x:Name="WalzenLage3" HorizontalAlignment="Center" 
-                                         VerticalAlignment="Top" 
+                                         VerticalAlignment="Top" HorizontalContentAlignment="Center"
                                          Width="70" SelectionChanged="WalzenLage3_SelectionChanged"/>
                         </StackPanel>
 
-                        <StackPanel Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Width="100" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock HorizontalAlignment="Center" Text="Rotor 2" TextWrapping="Wrap" VerticalAlignment="Center"/>
                             <ComboBox x:Name="WalzenLage2" HorizontalAlignment="Center" 
-                                          VerticalAlignment="Center" 
+                                          VerticalAlignment="Center" HorizontalContentAlignment="Center"
                                           Width="70" SelectionChanged="WalzenLage2_SelectionChanged"/>
                         </StackPanel>
 
@@ -53,8 +59,8 @@
                                         TickFrequency="1" SmallChange="1" 
                                         LargeChange="5" Minimum="1" 
                                         Maximum="26" IsSnapToTickEnabled="True"
-                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
-                            <TextBlock Text="{Binding ElementName=Grundstellung3, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        ValueChanged="Grundstellung3_ValueChanged" Orientation="Vertical" Value="1"/>
+                            <TextBlock Name="Grundstellung3Value" Text="A" 
                                         TextWrapping="NoWrap" TextAlignment="Center" 
                                         Width="30" DockPanel.Dock="
                                         Bottom" Height="18" HorizontalAlignment="Center"/>
@@ -67,8 +73,8 @@
                                         TickFrequency="1" SmallChange="1" 
                                         LargeChange="5" Minimum="1" 
                                         Maximum="26" IsSnapToTickEnabled="True"
-                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
-                            <TextBlock Text="{Binding ElementName=Grundstellung2, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        ValueChanged="Grundstellung2_ValueChanged" Orientation="Vertical" Value="1"/>
+                            <TextBlock Name="Grundstellung2Value" Text="A" 
                                         TextWrapping="NoWrap" TextAlignment="Center" 
                                         Width="30" DockPanel.Dock="
                                         Bottom" Height="18" HorizontalAlignment="Center"/>
@@ -81,8 +87,8 @@
                                         TickFrequency="1" SmallChange="1" 
                                         LargeChange="5" Minimum="1" 
                                         Maximum="26" IsSnapToTickEnabled="True"
-                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical"/>
-                            <TextBlock Text="{Binding ElementName=Grundstellung1, Path=Value, UpdateSourceTrigger=PropertyChanged}" 
+                                        ValueChanged="Grundstellung1_ValueChanged" Orientation="Vertical" Value="1"/>
+                            <TextBlock Name="Grundstellung1Value" Text="A" 
                                         TextWrapping="NoWrap" TextAlignment="Center" 
                                         Width="30" DockPanel.Dock="
                                         Bottom" Height="18" HorizontalAlignment="Center"/>
@@ -263,10 +269,11 @@
                     </StackPanel>
                 </WrapPanel>
 
-                <DockPanel VerticalAlignment="Center" LastChildFill="false" Width="200" Height="45">
-                    <Button Name="ProcessShift" Content="Process" HorizontalAlignment="Center" VerticalAlignment="Center" Width="51" Click="ProcessShift_Click" DockPanel.Dock="Left"/>
-                    <Button Name="ClearForm" Content="Clear" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="52" Click="ClearForm_Click" DockPanel.Dock="Right"/>
-                </DockPanel>
+                <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="45">
+                    <Button Name="Encode" Content="Encode" HorizontalAlignment="Left" VerticalAlignment="Center" Width="50" Click="ProcessShift_Click"/>
+                    <Button Name="Decode" Content="Decode" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Click="Decode_Click"/>
+                    <Button Name="ClearForm" Content="Clear" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Click="ClearForm_Click"/>
+                </WrapPanel>
             
             </StackPanel>
             

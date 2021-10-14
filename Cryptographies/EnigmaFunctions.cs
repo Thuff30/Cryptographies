@@ -9,9 +9,58 @@ namespace Cryptographies
     {
         public static string Encode(EnigmaSettings enigma, string userin)
         {
+            userin = RemovePunc(userin);
+            
+            return ProcessEncryption(enigma, userin);
+        }
+
+        public static string Decode(EnigmaSettings enigma, string userin)
+        {
+            string output = ProcessEncryption(enigma, userin.Replace(" ", String.Empty));
+            return AddPunc(output); 
+        }
+
+        //Replace punctuation with designated character combinations
+        private static string RemovePunc(string userin)
+        {
+            userin = userin.Replace(".", "BX");
+            userin = userin.Replace(",", "YB");
+            userin = userin.Replace("?", "QD");
+            userin = userin.Replace(":", "XX");
+            userin = userin.Replace(";", "XJ");
+            userin = userin.Replace("-", "VQ");
+            userin = userin.Replace("/", "DX");
+            userin = userin.Replace("\\", "CX");
+            userin = userin.Replace("(", "KQ");
+            userin = userin.Replace(")", "KX");
+            userin = userin.Replace(" ", String.Empty);
+
+            return userin;
+        }
+
+        //Replaces special character combinations with punctuation
+        private static string AddPunc(string userin)
+        {
+            userin = userin.Replace("BX", ".");
+            userin = userin.Replace("YB", ",");
+            userin = userin.Replace("QD", "?");
+            userin = userin.Replace("XX", ":");
+            userin = userin.Replace("XJ", ";");
+            userin = userin.Replace("VQ", "-");
+            userin = userin.Replace("DX", "/");
+            userin = userin.Replace("CX", "\\");
+            userin = userin.Replace("KQ", "(");
+            userin = userin.Replace("KX", ")");
+
+            return userin;
+        }
+
+        private static string ProcessEncryption(EnigmaSettings enigma, string userin)
+        {
             char[] reference = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
             char letterOut;
             StringBuilder sb = new StringBuilder();
+            int c = 0;
 
             foreach (var letter in userin)
             {
@@ -24,7 +73,7 @@ namespace Cryptographies
                 if (!Char.IsWhiteSpace(letter) || !Char.IsPunctuation(letter))
                 {
                     //Pass letter through plugboard, rotors, and reflector
-                    var tempValue = enigma.steckerbrett.FirstOrDefault(x=> x.Key == letter).Value;
+                    var tempValue = enigma.steckerbrett.FirstOrDefault(x => x.Key == letter).Value;
                     var tempValue2 = walzen1[tempValue].Value;
                     tempValue = FindIndex(walzen1, tempValue2);
                     tempValue2 = walzen2[tempValue].Value;
@@ -48,16 +97,18 @@ namespace Cryptographies
 
                     sb.Append(letterOut);
                 }
-                else
+                //Add a space every 5 characters
+                c++;
+                if (c % 5 == 0)
                 {
-                    sb.Append(letter);
+                    sb.Append(" ");
                 }
-
             }
             return sb.ToString();
         }
 
-        static int FindIndex(KeyValuePair<char, char>[] walzen, char value) 
+        //Finds the index of a key value pair based on a character
+        private static int FindIndex(KeyValuePair<char, char>[] walzen, char value) 
         {
             int pos = 0;
             foreach(var pair in walzen)
@@ -71,7 +122,8 @@ namespace Cryptographies
             return pos;
         }
         
-        static EnigmaSettings ShiftRotors(EnigmaSettings enigma)
+        //Shift rotors forward one position
+        private static EnigmaSettings ShiftRotors(EnigmaSettings enigma)
         {
 
             var tempNum = enigma.walzen1.Dequeue();

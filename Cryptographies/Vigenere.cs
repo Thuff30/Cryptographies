@@ -43,6 +43,7 @@ namespace Cryptographies
             return sb.ToString().ToUpper();
         }
 
+        //Returns a list of character arrays that will act as the code table for the cipher
         static List<char[]> GenerateCodeTable(int shiftNum)
         {
             Queue<char> shift = SharedFunctions.PopulateQueue(reference);
@@ -62,6 +63,7 @@ namespace Cryptographies
             return tabulaRecta;
         }
 
+        //Returns character array of the keyword repeated
         static char[] CodeString(int inputLength, string key)
         {
             StringBuilder sb = new StringBuilder();

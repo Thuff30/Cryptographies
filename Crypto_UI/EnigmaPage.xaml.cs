@@ -1,24 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Cryptographies;
+using Cryptographies.Objects;
 
 namespace Crypto_UI
 {
     public partial class EnigmaPage : Page
     {
         static List<int> Walzen = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
-        static char[] reference = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+        static List<char> reference = new List<char> { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
         public EnigmaPage()
         {
@@ -26,13 +18,43 @@ namespace Crypto_UI
             PopulateWalzen();
             PopulateSteckerbrett();
 
-        }              
-
-        private void Grundstellung1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-
         }
 
+        #region Grundstellung
+        private void Grundstellung1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Grundstellung1.IsInitialized)
+            {
+                Grundstellung1Value.Text = reference[((int)Grundstellung1.Value) - 1].ToString();
+
+            }
+        }
+        private void Grundstellung2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Grundstellung2.IsInitialized)
+            {
+                Grundstellung2Value.Text = reference[((int)Grundstellung2.Value) - 1].ToString();
+
+            }
+        }
+
+        private void Grundstellung3_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (Grundstellung3.IsInitialized)
+            {
+                Grundstellung3Value.Text = reference[((int)Grundstellung3.Value) - 1].ToString();
+            }
+        }
+
+        private void ResetGrundstellung()
+        {
+            Grundstellung1.Value = 1;
+            Grundstellung2.Value = 1;
+            Grundstellung3.Value = 1;
+        }
+        #endregion
+
+        //This region contains all functions pertaining to the rotors
         #region Walzen
         private void WalzenLage3_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -91,25 +113,92 @@ namespace Crypto_UI
                 WalzenLage2.Items.Add(rotor);
                 WalzenLage3.Items.Add(rotor);
             }
+
+            Umkehrwalzen.Items.Add("-");
+            Umkehrwalzen.SelectedIndex = 0;
+            Umkehrwalzen.Items.Add("B");
+            Umkehrwalzen.Items.Add("C");
+        }
+
+        public void ResetWalzen()
+        {
+            WalzenLage1.SelectedIndex = WalzenLage1.Items.IndexOf("-");
+            WalzenLage2.SelectedIndex = WalzenLage2.Items.IndexOf("-");
+            WalzenLage3.SelectedIndex = WalzenLage3.Items.IndexOf("-");
+            Umkehrwalzen.SelectedIndex = Umkehrwalzen.Items.IndexOf("-");
         }
         #endregion
 
         #region buttons
         private void ProcessShift_Click(object sender, RoutedEventArgs e)
         {
-            string userin;
-            List<int> grundstellung = new List<int>();
-            List<int> walzenlage = new List<int>();
-            char umkehrwalzenChoice;
+            string userin = UserInput.Text.ToUpper();
+            EnigmaInput input = ProcessInput();
+
+            Output.Text = Enigma.Encode(userin, input);
+
+        }
+
+        private void Decode_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string userin = UserInput.Text.ToUpper();
+            EnigmaInput input = ProcessInput();
+            
+            Output.Text = Enigma.Decode(userin, input);
+        }
+
+        private EnigmaInput ProcessInput()
+        {
+
+            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
+                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+
+            //Gather connections on the plugboard
             Dictionary<char, char> steckerbrett = new Dictionary<char, char>();
+            for (int i = 0; i < Connections.Count; i++)
+            {
+                if (Connections[i].Text != " _" && Connections[i].Text != "_ ")
+                {
+                    steckerbrett.Add(Char.Parse(Connections[i].Text.Trim()), Char.Parse(Connections[i + 1].Text.Trim()));
+                    steckerbrett.Add(Char.Parse(Connections[i + 1].Text.Trim()), Char.Parse(Connections[i].Text.Trim()));
+                    i++;
+                }
+            }
+            EnigmaInput input = new EnigmaInput()
+            {
+                //Gather the starting positions for the rotors
+                Grundstellung = new List<int>()
+                {
+                    reference.IndexOf(Char.Parse(Grundstellung1Value.Text)),
+                    reference.IndexOf(Char.Parse(Grundstellung2Value.Text)),
+                    reference.IndexOf(Char.Parse(Grundstellung3Value.Text))
+                },
+                //Gather selected rotors
+                Walzenlage = new List<int>()
+                {
+                    Int32.Parse(WalzenLage1.SelectedItem.ToString()),
+                    Int32.Parse(WalzenLage2.SelectedItem.ToString()),
+                    Int32.Parse(WalzenLage3.SelectedItem.ToString())
+                },
+                UmkherwalzeChoice = Char.Parse(Umkehrwalzen.SelectedItem.ToString()),
+                Steckerbrett = steckerbrett
+            };
+
+            return input;
         }
 
         private void ClearForm_Click(object sender, RoutedEventArgs e)
         {
-
+            ResetWalzen();
+            ResetGrundstellung();
+            ResetStecker();
+            UserInput.Text = "Message";
+            Output.Text = "Result Text";
         }
         #endregion
 
+        //Methods to handle user changes to the Steckerbrett settings
         #region Steckerbrett
         private void Q_DropDownClosed(object sender, EventArgs e)
         {
@@ -242,31 +331,69 @@ namespace Crypto_UI
         }
         #endregion
 
+
         #region SteckerbrettFunctions
 
-        public void ResetStecker()
+        //Reset all Steckerbrett comboboxes and connection strings
+        private void ResetStecker()
         {
             List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
+            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
+                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+            int counter = 0;
             foreach (var box in stecker)
             {
                 box.SelectedIndex = 0;
             }
+            foreach (var conn in Connections)
+            {
+                if (counter % 2 == 0)
+                {
+                    conn.Text = " _";
+                }
+                else
+                {
+                    conn.Text = "_ ";
+                }
+                counter++;
+            }
         }
 
-        public void ResetStecker(string triggerBox)
+        //Reset Steckerbrett combobox and connection strings based on triggering combobox
+        private void ResetStecker(ComboBox triggerBox)
         {
             List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
+            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
+                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
             foreach (var box in stecker)
             {
                 //Verfiy the combobox has items has an item selected and that item is equal to the triggering combobox's name
-                if (box.HasItems && box.SelectedItem != null && box.SelectedItem.ToString() == triggerBox)
+                if (box.HasItems && box.SelectedItem != null && box.SelectedItem.ToString() == triggerBox.Name)
                 {
                     box.SelectedIndex = 0;
                     break;
                 }
             }
+            for (var i = 0; i < Connections.Count; i++)
+            {
+                if (Connections[i].Text == triggerBox.Name + " " || Connections[i].Text == " " + triggerBox.Name)
+                {
+                    if (i % 2 == 0)
+                    {
+                        Connections[i].Text = " _";
+                        Connections[i + 1].Text = "_ ";
+                    }
+                    else
+                    {
+                        Connections[i].Text = "_ ";
+                        Connections[i - 1].Text = " _";
+                    }
+                }
+            }
+
         }
 
+        //Determines what action to take when a Steckerbrett combobox is changed
         private void DecideSteckerAction(ComboBox stecker)
         {
             //Determine if a connection has been set or removed
@@ -278,13 +405,13 @@ namespace Crypto_UI
             {
                 UpdateSteckerbrett(stecker);
             }
-            else if (stecker.SelectedItem.ToString() == "-")
+            else
             {
-                ResetStecker(stecker.Name.ToString());
+                ResetStecker(stecker);
             }
         }
 
-        public void PopulateSteckerbrett()
+        private void PopulateSteckerbrett()
         {
             List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
             foreach (var box in stecker)
@@ -301,61 +428,118 @@ namespace Crypto_UI
             }
         }
 
-        public void UpdateSteckerbrett(ComboBox triggerBox)
+        private void UpdateSteckerbrett(ComboBox triggerBox)
         {
             List<ComboBox> stecker = new List<ComboBox> { A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z };
 
-            //Verify less than 10 connections exist or the triggering combobox is one that was part of a previous connection
-            if (Conn19.Text == "_ " || CheckConnections(triggerBox)) 
-            {
-                foreach (var box in stecker)
+            //Check for an existing connection containing the triggering combobox OR the item that is selected
+            if (CheckConnections(triggerBox, stecker)) {
+                //Verify less than 10 connections exist or the triggering combobox is one that was part of a previous connection
+                if (CheckConnectionCount(stecker))
                 {
-                    if (box != null)
+                    foreach (var box in stecker)
                     {
-                        //Verify combobox is not the triggering combobox and its name matches the one selected
-                        if (box.Name != triggerBox.Name && box.Name == triggerBox.SelectedItem.ToString())
+                        if (box != null)
                         {
-                            box.SelectedIndex = box.Items.IndexOf(Char.Parse(triggerBox.Name));
-                        }
-                        //Verify the combobox is not selected, is not the triggering combobox, is not not and the selected item is the triggering combobox
-                        else if (box.Name != triggerBox.SelectedItem.ToString() && box.Name != triggerBox.Name && box.SelectedItem != null &&
-                            box.SelectedItem.ToString() == triggerBox.Name)
-                        {
-                            box.SelectedIndex = 0;
+                            //Verify combobox is not the triggering combobox and its name matches the one selected
+                            if (box.Name != triggerBox.Name && box.Name == triggerBox.SelectedItem.ToString())
+                            {
+                                box.SelectedIndex = box.Items.IndexOf(Char.Parse(triggerBox.Name));
+                            }
                         }
                     }
                 }
-
-                AddConnections(triggerBox);
-            }
-
-
-        }
-
-        public bool CheckConnections(ComboBox triggerBox)
-        {
-            List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
-                Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
-
-            foreach(var conn in Connections)
-            {
-                if(conn.Text == triggerBox.Name || conn.Text == triggerBox.SelectedItem.ToString())
+                //Cancel the change to the triggering combobox
+                else
                 {
-                    return true;
+                    triggerBox.SelectedIndex = 0;
                 }
             }
-            return false;
+            //Update existing connections
+            else
+            {
+                foreach(var box in stecker)
+                {
+                    if(box.SelectedItem.ToString() == triggerBox.Name || (box.Name != triggerBox.Name && box.SelectedItem.ToString() == triggerBox.SelectedItem.ToString()))
+                    {
+                        box.SelectedIndex = 0;
+                    }
+                    if(box.Name != triggerBox.Name && box.Name == triggerBox.SelectedItem.ToString())
+                    {
+                        box.SelectedIndex = box.Items.IndexOf(Char.Parse(triggerBox.Name));
+                    }
+                }
+            }
+            UpdateConnections(triggerBox);
         }
 
-        public void AddConnections(ComboBox triggerBox)
+        //Checks the number of existing connections to determine if the maximum has been reached
+        private bool CheckConnectionCount(List<ComboBox> stecker)
+        {
+            List<string> connections = new List<string>();
+            foreach(var box in stecker)
+            {
+                if(box.SelectedItem.ToString() != "-" && !connections.Contains(box.Name))
+                {
+                        connections.Add(box.Name);
+                }
+            }
+            if (connections.Count < 20)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Checks current connections and returns a boolean if a match is found
+        private bool CheckConnections(ComboBox triggerBox, List<ComboBox> stecker)
+        {
+            foreach(var box in stecker)
+            {
+                if(box.SelectedItem.ToString() == triggerBox.Name || (box.Name != triggerBox.Name && box.SelectedItem.ToString() == triggerBox.SelectedItem.ToString()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //Checks current connections and returns the connection containing the triggering combobox
+        private TextBlock CheckConnections(ComboBox triggerBox, List<TextBlock> Connections)
+        {
+            TextBlock empty = new TextBlock();
+            empty.Name = "Empty";
+            foreach (var conn in Connections)
+            {
+                if (conn.Text == " " + triggerBox.Name || conn.Text == triggerBox.Name + " ")
+                {
+                    return conn;
+                }
+            }
+            return empty;
+        }
+
+        private void UpdateConnections(ComboBox triggerBox)
         {
             List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9, 
                 Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+            TextBlock exisitng = CheckConnections(triggerBox, Connections);
 
             //Verify if the triggering combobox is part of an existing connection
-            if (CheckConnections(triggerBox))
+            if (exisitng.Name.ToString() != "Empty")
             {
-
+                int pos = Connections.IndexOf(exisitng);
+                if(pos % 2 == 0)
+                {
+                    Connections[pos + 1].Text = triggerBox.SelectedItem.ToString();
+                }
+                else
+                {
+                    Connections[pos - 1].Text = triggerBox.SelectedItem.ToString();
+                }
             }
             else
             {
@@ -372,16 +556,27 @@ namespace Crypto_UI
             }
         }
 
-        public void RemoveConnection(ComboBox comboBox)
+        private void RemoveConnection(ComboBox comboBox)
         {
             List<TextBlock> Connections = new List<TextBlock> { Conn0, Conn1, Conn2, Conn3, Conn4, Conn5, Conn6, Conn7, Conn8, Conn9,
                 Conn10, Conn11, Conn12, Conn13, Conn14, Conn15, Conn16, Conn17, Conn18, Conn19 };
+            int pos = 0;
 
             foreach(var conn in Connections)
             {
-
+                pos = Connections.IndexOf(conn);
+                if(pos % 2 == 0)
+                {
+                    conn.Text = " _";
+                }
+                else 
+                {
+                    conn.Text = "_ ";
+                }
             }
         }
+
+
         #endregion
     }
 }

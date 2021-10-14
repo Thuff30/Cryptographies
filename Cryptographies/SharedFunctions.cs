@@ -5,6 +5,7 @@ namespace Cryptographies
 {
     public static class SharedFunctions
     {
+        //Converts a string into a character array
         public static char[] ConvertToArray(string userin)
         {
             List<char> result = new List<char>();
@@ -20,6 +21,8 @@ namespace Cryptographies
             }
             return result.ToArray();
         }
+
+        //Converts an array to a queue
         public static Queue<char> PopulateQueue(char[] reference)
         {
             Queue<char> shift = new Queue<char>();
@@ -29,6 +32,8 @@ namespace Cryptographies
             }
             return shift;
         }
+
+        //Shifts a queue a predetermined number of positions
         public static Queue<char> ShiftQueue(Queue<char> q, int shiftNum)
         {
             for (int i = 0; i < shiftNum; i++)
