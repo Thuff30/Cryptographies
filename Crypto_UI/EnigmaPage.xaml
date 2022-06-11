@@ -5,12 +5,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Crypto_UI"
       mc:Ignorable="d" 
-      d:DesignHeight="475" d:DesignWidth="800"
       Title="EnigmaPage"
       Background="AliceBlue">
 
     <Grid>
-        <DockPanel LastChildFill="False">
+        <StackPanel>
+            
+        <Expander Width="Auto" ExpandDirection="Down" VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="2">
+            <Expander.Header>
+                <TextBlock Name="InstructHeader" HorizontalAlignment="Center" Text="Instructions" FontWeight="Bold"/>
+            </Expander.Header>
+            <StackPanel>
+                    <TextBlock x:Name="InstructIntro" HorizontalAlignment="Center" TextAlignment="Center" Margin="20" TextWrapping="Wrap" Text="The Enigma machine is a cipher device employed extensively by Nazi Germany during World War II in all branches of the German Military. It has a series of three electromechanical rotor mechanisms (Walzen) chosen from the eight available, a reflector (Umkehrwalze) chosen from the two available, and a plugboard (Steckerbrett) that scramble the letters of the alphabet. The plugboard on the front further scrambles the message by transposing the connected letters both on route to the rotors and coming back to the lampboard. Each rotor is wired to scramble the letters further as the signal passes through until it reaches the reflector, then is bounced back through the rotors to the plugboard. The Enigma was unique in that it was able to encrypt and decrypt without any changes to the device outside of matching the initial settings." />
+                    <TextBlock x:Name="Instructions" HorizontalAlignment="Center" TextAlignment="Center" Margin="20" TextWrapping="Wrap" Text="To encode or decode a message, select the reflector and rotors you would like to use in the dropdowns on the top left. Then select the starting position for each rotor. On the right, use the dropdown for each letter to set a connection on the plugboard (up to a maximum of 10 connections). Then enter the message in the box on the bottom left and select Encode or Decode to process the message."/>
+                </StackPanel>
+        </Expander>
+        
+        <DockPanel LastChildFill="False" HorizontalAlignment="Center">
             <WrapPanel Height="355" VerticalAlignment="Top" DockPanel.Dock="Top">
                 <StackPanel Width="400" Height="355" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <TextBlock FontSize="15" FontWeight="Normal" HorizontalAlignment="Center" Text="Please select the rotors you would like to use."/>
@@ -278,6 +289,8 @@
             </StackPanel>
             
         </DockPanel>
-
+            
+        </StackPanel>
+        
     </Grid>
 </Page>

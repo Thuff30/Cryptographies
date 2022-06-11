@@ -5,13 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Crypto_UI"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="VigeneresPage"
       Background="AliceBlue">
 
     <Grid>
-        <StackPanel Height="450" Width="800">
+        <StackPanel Height="Auto" Width="Auto">
 
+            <Expander Width="Auto" ExpandDirection="Down" VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="2">
+                <Expander.Header>
+                    <TextBlock Name="InstructHeader" HorizontalAlignment="Center" Text="Instructions" FontWeight="Bold"/>
+                </Expander.Header>
+                <StackPanel>
+                    <TextBlock x:Name="InstructIntro" HorizontalAlignment="Center" TextAlignment="Center" Margin="20" TextWrapping="Wrap" Text="A Vigenere Cipher is a method of encrypting that uses a simple form of polyalphabetic substitution in a table format. The table consists of the alphabet written 26 times in different rows, with each row shifted cyclically to the left starting with the first row being shifted a designated number of positions. A keyword is repeated for the entire length of the text to be encoded/decoded to get a key(ie. &quot;Encode Me&quot; with a keyword of &quot;Okay&quot; would have a key of &quot;OKAYOK AY&quot;). This key is then used to find the column and the corresponding character in the original message is used to find the row. The letter these intersect on is the encoded/decoded letter."/>
+                    <TextBlock Name="Instructions" HorizontalAlignment="Center" TextAlignment="Center" Margin="20" TextWrapping="Wrap" Text="Select Encode or Decode below then enter a message to encode or decode. Enter the number of characters the first line will be shifted, then enter the keyword and select process."/>
+                </StackPanel>
+            </Expander>
+            
             <DockPanel VerticalAlignment="Center" LastChildFill="False" HorizontalAlignment="Center" Width="300" Height="65">
                 <RadioButton Name="EncodeRadio" GroupName="FunctionGroup" Content="Encode Message" HorizontalAlignment="Center" VerticalAlignment="Center" Click="EncodeRadio_Click" DockPanel.Dock="Left"/>
                 <RadioButton Name="DecodeRadio" GroupName="FunctionGroup" Content="Decode Message" HorizontalAlignment="Center" VerticalAlignment="Center" Click="DecodeRadio_Click" DockPanel.Dock="Right"/>

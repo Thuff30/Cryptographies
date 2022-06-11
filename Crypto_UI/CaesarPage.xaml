@@ -5,12 +5,22 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Crypto_UI"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="CaesarPage"
       Background="AliceBlue">
 
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="450" Width="800">
+        
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="Auto" Width="Auto">
+            
+            <Expander Width="Auto" ExpandDirection="Down" VerticalAlignment="Top" BorderBrush="Gray" BorderThickness="2">
+                <Expander.Header>
+                        <TextBlock Name="InstructHeader" HorizontalAlignment="Center" Text="Instructions" FontWeight="Bold"/>
+                </Expander.Header>
+                <StackPanel>
+                    <TextBlock x:Name="InstructIntro" HorizontalAlignment="Center" TextAlignment="Center" Margin="20" TextWrapping="Wrap"><Run Text="      &#x9;A Caesar cipher is one of the simplest and most widely known encryption techniques. The method is named after Julius Caesar, who used it in his private correspondence."/><LineBreak/><Run Text="It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter a designated number of positions to right in the alphabet. For example, in a shift of 3, A would become by D, B would become E, etc. "/></TextBlock>
+                    <TextBlock Name="Instructions" HorizontalAlignment="Center" TextAlignment="Center" Margin="20" TextWrapping="Wrap" Text="Select Encode or Decode below then enter a message to encode or decode. Enter the number of characters the message needs to be shifted then select process to see the decoded message."/>
+                </StackPanel>
+            </Expander>
             
             <DockPanel HorizontalAlignment="Center" LastChildFill="False" Width="300" Height="65">
                 <RadioButton Name="EncodeRadio" GroupName="FunctionGroup" Content="Encode Message" HorizontalAlignment="Center" VerticalAlignment="Center" Click="EncodeRadio_Click" DockPanel.Dock="Left"/>
